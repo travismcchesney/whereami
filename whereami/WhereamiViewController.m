@@ -25,6 +25,9 @@
         // There will be a warning from this line of code; ignore it for now
         [locationManager setDelegate:self];
         
+        // Send updates only when the device moves at least 10 meters
+        [locationManager setDistanceFilter:10];
+        
         // And we want it to be as accurate as possible
         // regardless of how much tim/power it takes
         [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
