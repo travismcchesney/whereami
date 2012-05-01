@@ -31,6 +31,9 @@
         
         // Tell our manager to start looking for its location immediately
         [locationManager startUpdatingLocation];
+        
+        // Tell our manager to start updating heading information
+        [locationManager startUpdatingHeading];
     }
     
     return self;
@@ -47,6 +50,12 @@
        didFailWithError:(NSError *)error
 {
     NSLog(@"%@", error);
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didUpdateHeading:(CLHeading *)newHeading
+{
+    NSLog(@"%@", newHeading);
 }
 
 - (void)dealloc
