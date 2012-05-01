@@ -28,12 +28,14 @@
         // And we want it to be as accurate as possible
         // regardless of how much tim/power it takes
         [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-        
-        // Tell our manager to start looking for its location immediately
-        [locationManager startUpdatingLocation];
     }
     
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [worldView setShowsUserLocation:YES];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
