@@ -12,7 +12,6 @@
 
 @interface BNRMapPoint : NSObject <MKAnnotation>
 {
-    
 }
 
 // A new designated initializer for instances of BNRMapPoint
@@ -21,7 +20,8 @@
 // This is a required property from MKAnnotation
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
-// This is an optional property from MKAnnotation
+// These are optional properties from MKAnnotation
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 
 @end
