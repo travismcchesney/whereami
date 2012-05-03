@@ -110,6 +110,28 @@
     return YES;
 }
 
+- (IBAction)setMapType:(id)sender
+{
+    switch (((UISegmentedControl *)sender).selectedSegmentIndex)
+    {
+        case 0:
+        {
+            [worldView setMapType:MKMapTypeStandard];
+            break;
+        } 
+        case 1:
+        {
+            [worldView setMapType:MKMapTypeSatellite];
+            break;
+        } 
+        default:
+        {
+            [worldView setMapType:MKMapTypeHybrid];
+            break;
+        } 
+    }
+}
+
 - (void)dealloc
 {
     // Tell the location manager to stop sending us messages
