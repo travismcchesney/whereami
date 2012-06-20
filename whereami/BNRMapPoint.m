@@ -8,7 +8,7 @@
 
 #import "BNRMapPoint.h"
 
-@implementation BNRMapPoint
+@implementation BNRMapPoint 
 
 @synthesize coordinate, title;
 
@@ -26,6 +26,25 @@
 {
     return [self initWithCoordinate:CLLocationCoordinate2DMake(43.07, -89.32)
                               title:@"Hometown"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        coordinate = CLLocationCoordinate2DMake([aDecoder decodeFloatForKey:@"latitude"], [aDecoder decodeFloatForKey:@"longitude"]);
+        
+        [self setTitle:[aDecoder decodeObjectForKey:@"title"]];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeFloat:coordinate.latitude forKey:@"latitude"];
+    [aCoder encodeFloat:coordinate.longitude forKey:@"longitude"];
+    
+    [aCoder encodeObject:title forKey:@"title"];
 }
 
 @end

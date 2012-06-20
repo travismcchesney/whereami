@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface BNRMapPoint : NSObject <MKAnnotation>
+@interface BNRMapPoint : NSObject <MKAnnotation, NSCoding>
 {
     
 }

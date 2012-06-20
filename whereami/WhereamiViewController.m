@@ -57,6 +57,13 @@
         // And we want it to be as accurate as possible
         // regardless of how much tim/power it takes
         [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+        
+        NSString *path = [self itemArchivePath];
+        NSArray *annotations = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        
+        // If the array hadn't been saved previously, create a new empty one
+        if (annotations)
+            [worldView addAnnotations:annotations];
     }
     
     return self;
@@ -108,6 +115,34 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+- (NSString *)itemArchivePath
+{
+    NSArray *documentDirectories =
+    NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                        NSUserDomainMask, YES);
+    
+    // Get one and only one document directory from that list
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    
+    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+}
+
+- (BOOL)saveAnnotations
+{
+    NSString *path = [self itemArchivePath];
+    
+    NSArray *annotations = [worldView annotations];
+    NSMutableArray *mapPoints = [NSMutableArray array];
+    
+    for (id obj in annotations) {
+        if ([obj conformsToProtocol:@protocol(NSCoding)])
+            [mapPoints addObject:obj];
+    }
+    
+    return [NSKeyedArchiver archiveRootObject:mapPoints
+                                       toFile:path];
 }
 
 - (void)dealloc

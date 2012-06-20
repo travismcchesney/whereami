@@ -23,5 +23,7 @@
 
 - (void)findLocation;
 - (void)foundLocation:(CLLocation *)loc;
+- (NSString *)itemArchivePath;
+- (BOOL)saveAnnotations;
 
 @end
